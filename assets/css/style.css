@@ -1,0 +1,28 @@
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav_title {
+    background-color: green;
+}
+
+.text_sm {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.contact_button {
+    background-color: green;
+}
