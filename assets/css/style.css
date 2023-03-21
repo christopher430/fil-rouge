@@ -1,0 +1,51 @@
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.pacifico {
+    font-family: 'Pacifico', cursive;
+}
+
+.get_border:hover {
+    border: solid 1px white;
+}
+
+.bg_hair {
+    background: url("../images/coiffeur-8-5.jpg");
+}
+
+.bg_room1 {
+    background: url("../images/salon1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg_room2 {
+    background: url("../images/salon2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg_scissors {
+    background: url("../images/ciseaux.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg_badger {
+    background: url("../images/blaireau.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
