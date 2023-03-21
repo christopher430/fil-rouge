@@ -30,7 +30,7 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </div>é
         <div class="container d-flex align-items-center justify-content-between">
             <div class="row w-100">
                 <div class="col-lg-8 d-flex align-items-center">
