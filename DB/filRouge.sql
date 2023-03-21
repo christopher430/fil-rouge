@@ -85,6 +85,15 @@ CREATE TABLE platforms(
    FOREIGN KEY(id_pictures) REFERENCES pictures(id)
 );
 
+CREATE TABLE editions(
+   id INT AUTO_INCREMENT,
+   name VARCHAR(50),
+   id_pictures INT NOT NULL,
+   PRIMARY KEY(id),
+   UNIQUE(id_pictures),
+   FOREIGN KEY(id_pictures) REFERENCES pictures(id)
+);
+
 CREATE TABLE products(
    id INT AUTO_INCREMENT,
    identifier INT,
@@ -92,12 +101,9 @@ CREATE TABLE products(
    description TEXT,
    features_1 VARCHAR(50),
    features_2 VARCHAR(50),
-   comments TEXT,
    is_enabled BOOLEAN,
-   id_platforms INT NOT NULL,
    id_sub_categories INT NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_platforms) REFERENCES platforms(id),
    FOREIGN KEY(id_sub_categories) REFERENCES sub_categories(id)
 );
 
@@ -107,4 +113,14 @@ CREATE TABLE pictures_products(
    PRIMARY KEY(id_products, id_pictures),
    FOREIGN KEY(id_products) REFERENCES products(id),
    FOREIGN KEY(id_pictures) REFERENCES pictures(id)
+);
+
+CREATE TABLE products_platforms_editions(
+   id_products INT,
+   id_platforms INT,
+   id_editions INT,
+   PRIMARY KEY(id_products, id_platforms, id_editions),
+   FOREIGN KEY(id_products) REFERENCES products(id),
+   FOREIGN KEY(id_platforms) REFERENCES platforms(id),
+   FOREIGN KEY(id_editions) REFERENCES editions(id)
 );

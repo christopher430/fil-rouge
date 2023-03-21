@@ -1,8 +1,9 @@
 <?php
-// controllers/homepage.php
-require_once('../model/model.php');
+require_once('../model/welcome.php');
 
-function homepage() {
-    $disconnect= welcome();
+function homepage($f) 
+{
+    $welcome = welcome($f);
+
     require('../templates/homepage.php');
 }
