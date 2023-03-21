@@ -8,6 +8,7 @@ function insertProductsDatas()
         $identifier = time();
         $name = strip_tags($_POST['name']);
         $description = strip_tags($_POST['description']);
+        $price = floatval($_POST['price']);
         if(isset($_POST['fstFeature'])) {
             $fstFeature = strip_tags($_POST['fstFeature']);
         } else {
@@ -28,7 +29,7 @@ function insertProductsDatas()
         $path = strip_tags('assets/images/uploads/' . $_FILES['picture']['name']);
         picturesAdd($pictureName, $path);
         $picturesId = getPicturesId($pictureName);
-        $idProducts = addProducts($identifier, $name, $description, $fstFeature, $scdFeature, $isEnabled, $idSubCategories, $picturesId);
+        $idProducts = addProducts($identifier, $name, $description, $fstFeature, $scdFeature, $price, $isEnabled, $idSubCategories, $picturesId);
         $idSelectedPlatforms = getSelectedPlatforms();
         $idSelectedEditions = getSelectedEditions();
         foreach($idSelectedPlatforms as $idSelectedPlatform) {
@@ -45,6 +46,7 @@ function checkInputs()
 {
     if (!isset($_POST['name']) || (empty($_POST['name']))
     || (!isset($_POST['description']) || empty($_POST['description']))
+    || (!isset($_POST['price']) || empty($_POST['price']))
     || (!isset($_POST['subCategorie']) || empty($_POST['subCategorie']))
     || (!isset($_POST['platforms']) || empty($_POST['platforms']))
     || (!isset($_POST['editions']) || empty($_POST['editions']))
@@ -100,17 +102,18 @@ function getPicturesId($pictureName)
     return $idPictures;
 }
 
-function addProducts($identifier, $name, $description, $fstFeature, $scdFeature, $isEnabled, $idSubCategories, $picturesId)
+function addProducts($identifier, $name, $description, $fstFeature, $scdFeature, $price, $isEnabled, $idSubCategories, $picturesId)
 {
     $database = dbConnect();
-    $query =    'INSERT INTO products(identifier, name, description, features_1, features_2, is_enabled, id_sub_categories, id_pictures) 
-                VALUES (:identifier, :name, :description, :fstFeature, :scdFeature, :isEnabled, :idSubCategories, :picturesId)';
+    $query =    'INSERT INTO products(identifier, name, description, features_1, features_2, price, is_enabled, id_sub_categories, id_pictures) 
+                VALUES (:identifier, :name, :description, :fstFeature, :scdFeature, :price, :isEnabled, :idSubCategories, :picturesId)';
     $req = $database->prepare($query);
     $req->bindValue(':identifier', $identifier, PDO::PARAM_INT);
     $req->bindValue(':name', $name, PDO::PARAM_STR);
     $req->bindValue(':description', $description, PDO::PARAM_STR);
     $req->bindValue(':fstFeature', $fstFeature, PDO::PARAM_STR);
     $req->bindValue(':scdFeature', $scdFeature, PDO::PARAM_STR);
+    $req->bindValue(':price', $price);
     $req->bindValue(':isEnabled', $isEnabled, PDO::PARAM_BOOL);
     $req->bindValue(':idSubCategories', $idSubCategories, PDO::PARAM_INT);
     $req->bindValue(':picturesId', $picturesId, PDO::PARAM_INT);

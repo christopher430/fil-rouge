@@ -24,6 +24,10 @@
             <label for="scdFeature">Caractéristique 2</label>
 			<input id="scdFeature" type="text" class="form-control" placeholder="" name="scdFeature" value="<?= $product['features_2'] ?>">
         </div>
+		<div class="w-25 mb-3">
+            <label for="price">Prix</label>
+			<input id="price" type="number" class="form-control" min="0" step="0.01" placeholder="" name="price" value="<?= $product['price'] ?>">
+        </div>
         <div class="mb-3">
             <label for="isEnabled"><strong>Autoriser le produit</strong></label>
             <input class="form-check-input" type="checkbox" value="true" name="isEnabled" id="isEnabled" <?php if($product['is_enabled'] == 1) {echo 'checked';} ?>>

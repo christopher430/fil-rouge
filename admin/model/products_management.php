@@ -16,6 +16,7 @@ function getProducts()
             'description' => $row['description'],
             'features_1' => $row['features_1'],
             'features_2' => $row['features_2'],
+            'price' => $row['price'],
             'is_enabled' => $row['is_enabled'],
             'id_sub_categories' => $row['id_sub_categories'],
             'id_pictures' => $row['id_pictures'],

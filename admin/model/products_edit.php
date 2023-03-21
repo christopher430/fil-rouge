@@ -18,6 +18,7 @@ function displayProductsDatas($id)
             'description' => $row['description'],
             'features_1' => $row['features_1'],
             'features_2' => $row['features_2'],
+            'price' => $row['price'],
             'is_enabled' => $row['is_enabled'],
             'id_sub_categories' => $row['id_sub_categories'],
             'id_pictures' => $row['id_pictures'],
@@ -159,6 +160,7 @@ function editProductsDatas($id, $firstPictureName)
 
         $name = strip_tags($_POST['name']);
         $description = strip_tags($_POST['description']);
+        $price = floatval($_POST['price']);
         if(isset($_POST['fstFeature'])) {
             $fstFeature = strip_tags($_POST['fstFeature']);
         } else {
@@ -179,7 +181,7 @@ function editProductsDatas($id, $firstPictureName)
         $path = strip_tags('assets/images/uploads/' . $_FILES['picture']['name']);
         $picturesId = getPicturesId($firstPictureName);
         picturesEdit($picturesId, $pictureName, $path);
-        editProducts($id, $name, $description, $fstFeature, $scdFeature, $isEnabled, $idSubCategories, $picturesId);
+        editProducts($id, $name, $description, $fstFeature, $scdFeature, $price, $isEnabled, $idSubCategories, $picturesId);
         $idSelectedPlatforms = getSelectedPlatforms();
         $idSelectedEditions = getSelectedEditions();
         foreach($idSelectedPlatforms as $idSelectedPlatform) {
@@ -196,6 +198,7 @@ function checkInputs()
 {
     if (!isset($_POST['name']) || (empty($_POST['name']))
     || (!isset($_POST['description']) || empty($_POST['description']))
+    || (!isset($_POST['price']) || empty($_POST['price']))
     || (!isset($_POST['subCategorie']) || empty($_POST['subCategorie']))
     || (!isset($_POST['platforms']) || empty($_POST['platforms']))
     || (!isset($_POST['editions']) || empty($_POST['editions']))
@@ -262,10 +265,10 @@ function picturesEdit($picturesId, $pictureName, $path)
         $stmt->execute();
 }
 
-function editProducts($id, $name, $description, $fstFeature, $scdFeature, $isEnabled, $idSubCategories, $picturesId)
+function editProducts($id, $name, $description, $fstFeature, $scdFeature, $price, $isEnabled, $idSubCategories, $picturesId)
 {
     $database = dbConnect();
-    $query =    'UPDATE products SET name = :name, description = :description, features_1 = :features_1, features_2 = :features_2, is_enabled = :is_enabled, id_sub_categories = :id_sub_categories, id_pictures = :picturesId
+    $query =    'UPDATE products SET name = :name, description = :description, features_1 = :features_1, features_2 = :features_2, price = :price, is_enabled = :is_enabled, id_sub_categories = :id_sub_categories, id_pictures = :picturesId
                 WHERE id = :id';
     $req = $database->prepare($query);
     $req->bindValue(':id', $id, PDO::PARAM_INT);
@@ -273,6 +276,7 @@ function editProducts($id, $name, $description, $fstFeature, $scdFeature, $isEna
     $req->bindValue(':description', $description, PDO::PARAM_STR);
     $req->bindValue(':features_1', $fstFeature, PDO::PARAM_STR);
     $req->bindValue(':features_2', $scdFeature, PDO::PARAM_STR);
+    $req->bindValue(':price', $price);
     $req->bindValue(':is_enabled', $isEnabled, PDO::PARAM_BOOL);
     $req->bindValue(':id_sub_categories', $idSubCategories, PDO::PARAM_INT);
     $req->bindValue(':picturesId', $picturesId, PDO::PARAM_INT);

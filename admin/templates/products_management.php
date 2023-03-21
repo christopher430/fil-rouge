@@ -12,6 +12,7 @@
                 <th>Description</th>
                 <th>Caractéristique 1</th>
                 <th>Caractéristique 2</th>
+                <th>Prix</th>
                 <th>Autoriser</th>
                 <th>Sous-catégorie</th>
                 <th>Plateforme</th>
@@ -28,6 +29,7 @@
                 <td><?=$product['description']?></td>
                 <td><?=$product['features_1']?></td>
                 <td><?=$product['features_2']?></td>
+                <td><?=$product['price']?></td>
                 <td><?php if($product['is_enabled']==1) {echo 'Oui';} else {echo 'Non';} ?></td>
                 <td><?=$product['sub_category_name']?></td>
                 <td>
@@ -45,7 +47,7 @@
                     ?>
                 </td>
                 <td class="text-center"><img src="../<?=$product['picture_path']?>" alt="<?= $product['name'] ?>"></td>
-                <td class="text-center">
+                <td class=" col-2 text-center">
                     <div class="container">
                         <div class="row">
                             <div class="col">
