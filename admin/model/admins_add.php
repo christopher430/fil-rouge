@@ -7,21 +7,11 @@ function insertDatas()
     $checkInputs = checkInputs();
 
     if($checkInputs) {
-        $locName = strip_tags($_POST['name']); // à retirer pour test
-        global $name;
-        $name = $locName;
-        $locForname = strip_tags($_POST['forname']);
-        global $forname;
-        $forname = $locForname;
-        $locEmail = strip_tags($_POST['email']);
-        global $Email;
-        $email = $locEmail;
-        $locPassword = strip_tags($_POST['password']);
-        global $password;
-        $password = $locPassword;
-        $locCheck = strip_tags($_POST['check']);
-        global $check;
-        $check = $locCheck;
+        $name = strip_tags($_POST['name']);
+        $forname = strip_tags($_POST['forname']);
+        $email = strip_tags($_POST['email']);
+        $password = strip_tags($_POST['password']);
+        $check = strip_tags($_POST['check']);
         if ($password == $check) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             addAdmins($name, $forname, $email, $password);

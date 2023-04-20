@@ -3,7 +3,7 @@ session_start();
 
 require_once('../model/welcome.php');
 
-if(!isset($_SESSION['email'])) {
+if(!isset($_SESSION['email_back'])) {
     require_once('../controllers/login.php');
     login();
 } else { 
@@ -127,7 +127,7 @@ if(!isset($_SESSION['email'])) {
             }
         } else {
             require_once('../controllers/homepage.php');
-            homepage($_SESSION['forname']);
+            homepage($_SESSION['forname_back']);
         }
     } catch (Exception $e) {
         $errorMessage = $e->getMessage();

@@ -26,3 +26,12 @@ a {
 .contact_button {
     background-color: green;
 }
+
+.nav {
+    --bs-nav-link-color: black;
+    --bs-nav-link-hover-color: var(--bs-success)
+}
+
+.nav-tabs {
+    --bs-nav-tabs-link-active-color: var(--bs-success);
+}

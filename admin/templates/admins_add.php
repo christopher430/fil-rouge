@@ -2,7 +2,7 @@
 
 <div class="container mt-3">
     <h1>Ajouter un administrateur</h1>
-    <h3 class='text-success'><?php echo $msg ?></h3>
+    <h3 class='text-success'><?= $msg ?></h3>
 
     <form action="" method="POST" class="row my-5">
 

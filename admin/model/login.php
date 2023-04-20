@@ -12,11 +12,11 @@ function checkLogin()
         $forname= '';
         $getPassword = getPassword($email);
         if(password_verify($password, $getPassword['password'])) {
-            $_SESSION['email']= $_POST['email'];
-            $_SESSION['password']= $_POST['password'];
-            $_SESSION['forname']= $getPassword['forname'];
-            $msg = $_SESSION['forname'];
-            homepage($_SESSION['forname']);
+            $_SESSION['email_back'] = $_POST['email'];
+            $_SESSION['password_back'] = $_POST['password'];
+            $_SESSION['forname_back'] = $getPassword['forname'];
+            $msg = $_SESSION['forname_back'];
+            homepage($_SESSION['forname_back']);
             return $msg;
         } else {
             $msg= '<h3 class="text-danger mt-3">Vérifiez l\'email et le mot de passe</h3>';
